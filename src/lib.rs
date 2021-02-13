@@ -100,4 +100,44 @@ mod tests {
         large_string.push_str(String::from("9").repeat(20).as_str());
         assert_eq!(BigNum::from_string(large_string.clone()).to_string(), large_string);
     }
+
+    #[test]
+    fn add() {
+        let large_string_one = String::from("99");
+        let large_string_two = String::from("99");
+        let large_string_result = String::from("198");
+        assert_eq!((&BigNum::from_string(large_string_one) +
+                   &BigNum::from_string(large_string_two)).to_string()
+                   ,large_string_result);
+    }
+
+    #[test]
+    fn sub() {
+        let large_string_one = String::from("100");
+        let large_string_two = String::from("99");
+        let large_string_result = String::from("1");
+        assert_eq!((&BigNum::from_string(large_string_one) -
+            &BigNum::from_string(large_string_two)).to_string()
+                   ,large_string_result);
+    }
+
+    #[test]
+    fn mul() {
+        let large_string_one = String::from("100");
+        let large_string_two = String::from("5");
+        let large_string_result = String::from("500");
+        assert_eq!((&BigNum::from_string(large_string_one) *
+            &BigNum::from_string(large_string_two)).to_string()
+                   ,large_string_result);
+    }
+
+    #[test]
+    fn div() {
+        let large_string_one = String::from("100");
+        let large_string_two = String::from("99");
+        let large_string_result = String::from("1");
+        assert_eq!((&BigNum::from_string(large_string_one) /
+            &BigNum::from_string(large_string_two)).to_string()
+                   ,large_string_result);
+    }
 }
