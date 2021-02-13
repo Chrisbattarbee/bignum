@@ -2,6 +2,7 @@
 
 use std::convert::TryFrom;
 use crate::NumSign::{NEGATIVE, POSITIVE};
+use std::ops;
 
 enum NumSign {
     POSITIVE,
@@ -17,13 +18,13 @@ impl NumSign {
     }
 }
 
-struct BigNum {
+pub struct BigNum {
     sign: NumSign,
     nums: Vec<u8>,
 }
 
 impl BigNum {
-    fn from_string(mut num: String) -> BigNum {
+    pub fn from_string(mut num: String) -> BigNum {
         let sign = if num.chars().nth(0).expect("Less than 1 number supplied") == '-' {
             num.remove(0);
             NEGATIVE
@@ -39,8 +40,7 @@ impl BigNum {
             sign
         }
     }
-
-    fn to_string(&self) -> String {
+    pub fn to_string(&self) -> String {
         let mut number: String = self.nums.clone().into_iter()
             .map(|x| u32::from(x))
             .map(|x| char::from_digit(x, 10).expect("Could not convert vec item to char integer"))
@@ -49,6 +49,38 @@ impl BigNum {
         number.insert_str(0, &self.sign.to_string());
 
         number
+    }
+}
+
+impl ops::Add<&BigNum> for &BigNum {
+    type Output = BigNum;
+
+    fn add(self, rhs: &BigNum) -> Self::Output {
+        unimplemented!()
+    }
+}
+
+impl ops::Sub<&BigNum> for &BigNum {
+    type Output = BigNum;
+
+    fn sub(self, rhs: &BigNum) -> Self::Output {
+        unimplemented!()
+    }
+}
+
+impl ops::Mul<&BigNum> for &BigNum {
+    type Output = BigNum;
+
+    fn mul(self, rhs: &BigNum) -> Self::Output {
+        unimplemented!()
+    }
+}
+
+impl ops::Div<&BigNum> for &BigNum {
+    type Output = BigNum;
+
+    fn div(self, rhs: &BigNum) -> Self::Output {
+        unimplemented!()
     }
 }
 
